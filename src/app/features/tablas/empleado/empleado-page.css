@@ -1,0 +1,297 @@
+/* features/tablas/empleado/empleado-page.css */
+*{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+}
+
+main {
+	align-items:start;
+	padding-top: 3vh;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 0.8rem;
+}
+
+.cont_tabla {
+    background-color: rgba(230, 230, 230, 0.6);/* Color del Contenedor dela tabla*/
+    width: 96vw;
+    height: auto;
+	max-height: 88vh;
+    display: flex;
+    justify-content: center;        
+    flex-wrap: wrap;
+    border-radius: 0.8rem;
+}
+
+/*******************************************CABEZERA DE LA TABLA********************************************************/
+.table_header {
+    display: flex;
+    width: 95%;
+    margin-top: 1%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+/****************************Divisor de Titulo y botones****************************/
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+	
+}
+
+/*************************Titulo*************************/
+.row>h1 {
+    font-size: 2.2rem;
+    color: black;
+	margin-bottom: 1vh; 
+}
+
+/***************Botones, Imputs y ComBox*****************/
+.row>div, .row>form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: auto;    
+    height: 2.3vw;
+    min-height: 35px;
+    align-items: center; /* Centra verticalmente el contenido */
+    gap: 0.5rem; /* Espaciado entre botones */
+	margin-bottom: 0.6vh; 
+}
+
+/*************Botones**************/
+.boton-header {
+    position: relative;
+    z-index: 0; 
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #0011a8;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.boton-btn {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    background: none;
+    color: white;
+    white-space: nowrap;
+    z-index: 1;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton-header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0011a8, #0066ff, #0011a8);
+    z-index: -1;
+    opacity: 0;
+    transition: 0.5s ease-in-out all;
+    pointer-events: none;  /* No bloquea clics ni texto */
+}
+
+.boton-header:hover::after {
+    opacity: 1;
+}
+
+/*************ComBox e Imputs***************/
+.cbo-listar, .buscardor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    margin: 0 1rem;
+}
+
+.cbo-listar > label, .buscardor > label {
+    font-size: 1rem;
+    white-space: nowrap;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin: 0 3%;
+    border-radius: 0.5rem;
+    background-color: #d5d1defe;
+}
+
+.cbo-listar > select,
+.buscardor > input {
+    height: 2.15rem;
+    font-size: 1rem;
+    background-color: white;
+    border-radius: 0.4rem;
+    border: 2px solid rgb(200, 200, 200);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilos individuales */
+.cbo-listar > select {
+    padding: 0.2rem 0.8rem;
+    width: auto;
+}
+
+.buscardor > input {
+    width: 13rem;
+    padding-left: 8px;
+}
+
+.btn-label {
+    font-size: 1rem;
+    white-space: nowrap;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #d5d1defe;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    height: 2.15rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto enfocar o pasar*/
+.cbo-listar > select:hover,
+.cbo-listar > select:focus,
+.buscardor > input:hover,
+.buscardor > input:focus {
+    border-color: #66ccff;
+    box-shadow: 0 0 5px #66ccff;
+}
+
+.btn-label:hover,
+.btn-label:focus {
+    background-color: #e0dfee;
+    box-shadow: 0 0 5px #66ccff;
+}
+
+
+/*******************************************CUERPO DE LA TABLA********************************************************/
+.table_body {
+    background-color: white;
+    width: 95%;
+    max-height: 65vh;
+    border-radius: 0.6rem;
+    overflow: auto;
+	margin-top: 0.6%;
+	margin-bottom: 2%; 
+}
+
+.table_body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table_body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table_body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+thead  th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+/**************************** Extras Para la Tabla ****************************/
+
+/*tbody tr:hover {
+    background-color: #fff6;
+}*/
+
+.centrado {
+    text-align: center;
+	text-wrap: nowrap;
+}
+
+td.centrado form {
+    display: inline-block;  /* o inline-flex si necesitas centrar dentro */
+    margin: 0 0.3rem;       /* Espaciado entre botones */
+}
+
+/**************************** Botones y Efectos ****************************/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;         
+    height: 30px;    
+	width: auto;
+	min-width: 85px;              
+    padding: 0rem 0.8rem;       /* Espaciado interno mínimo */
+    color: white;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border: none;
+    background-color: gray;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/************ Variantes de color ************/
+.btn.btn-danger {
+    background-color: rgb(255, 0, 0);
+}
+.btn.btn-danger:hover {
+    background-color: rgb(210, 0, 0);
+}
+
+.btn.btn-info {
+    background-color: rgb(0, 150, 0);
+}
+.btn.btn-info:hover {
+    background-color: green;
+}
+
+.btn.btn-primary {
+    background-color: rgb(0, 0, 255);
+}
+.btn.btn-primary:hover {
+    background-color: rgb(0, 0, 190);
+}

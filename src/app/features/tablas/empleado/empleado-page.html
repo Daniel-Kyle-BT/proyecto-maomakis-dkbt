@@ -1,0 +1,55 @@
+<!--/tablas/empleado/empleado-page.html-->
+<main>
+  <!-- Modal básico -->
+  <div class="modal-backdrop" *ngIf="showForm">
+    <div class="modal">
+      <app-empleado-form [empleado]="selectedEmpleado" (save)="onSave($event)" (cancel)="onCancel()">
+      </app-empleado-form>
+    </div>
+  </div>
+  <div class="cont_tabla">
+    <section class="table_header">
+      <div class="row">
+        <h1>Lista de Empleados</h1>
+      </div>
+      <div class="row">
+        <div>
+          <div class="boton-header">
+            <button class="boton-btn" (click)="nuevoEmpleado()">Nuevo</button>
+          </div>
+          <div class="boton-header">
+            <button class="boton-btn" (click)="toggleEstado()">
+              {{ filtros.estado ? 'Inactivos' : 'Activos'}}
+            </button>
+          </div>
+        </div>
+        <div>
+          <app-select-api [label]="'Cargo'" [apiPath]="'/cargos'" (selectionChange)="onFiltroChange('idCargo', $event)">
+          </app-select-api>
+          <app-select-api [label]="'Departamento'" [apiPath]="'/departamentos'" [selectedId]="filtros.idDepartamento"
+            (selectionChange)="onFiltroChange('idDepartamento',$event)">
+          </app-select-api>
+
+          <app-select-api 
+            [label]="'Provincia'" 
+            [apiPath]="'/provincias'"
+            [params]="{ idDepartamento: filtros.idDepartamento }" 
+            [selectedId]="filtros.idProvincia"
+            (selectionChange)="onFiltroChange('idProvincia',$event)">
+          </app-select-api>
+
+          <app-select-api [label]="'Distrito'" [apiPath]="'/distritos'" [params]="{ idProvincia: filtros.idProvincia }"
+            [selectedId]="filtros.idDistrito" (selectionChange)="onFiltroChange('idDistrito',$event)">
+          </app-select-api>
+        </div>
+      </div>
+    </section>
+    <section class="table_body">
+      <app-empleado-table [idCargo]="filtros.idCargo" [idDistrito]="filtros.idDistrito"
+        [idProvincia]="filtros.idProvincia" [idDepartamento]="filtros.idDepartamento" [estado]="filtros.estado"
+        (editarEmpleado)="editarEmpleado($event)">
+      </app-empleado-table>
+
+    </section>
+  </div>
+</main>

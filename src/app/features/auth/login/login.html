@@ -1,0 +1,71 @@
+<main>
+  <div class="wrapper" [class.active]="wrapperActive">
+  <span class="bg-animate"></span>
+  <span class="bg-animate2"></span>
+
+  <!-- LOGIN -->
+  <div class="form-box login">
+    <h2 class="animation" style="--i:0; --j:21;">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="input-box animation" style="--i:1; --j:22;">
+        <input type="text" formControlName="username" required />
+        <label>Usuario</label>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box animation" style="--i:2; --j:23;">
+        <input type="password" formControlName="password" required />
+        <label>Contraseña</label>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <button type="submit" class="btn animation" style="--i:3; --j:24;">Iniciar Sesión</button>
+      <div class="logreg-link animation" style="--i:4; --j:25;">
+        <p>¿No tienes una cuenta? 
+          <a href="#" (click)="toggleForms(true)" class="register-link">Regístrate</a>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <div class="info-text login">
+    <h2 class="animation" style="--i:0; --j:20;">Welcome Back</h2>
+    <p class="animation" style="--i:1; --j:21;">
+      Nuevas promociones y ofertas te esperan al alcance de un click
+    </p>
+  </div>
+
+  <!-- REGISTER -->
+  <div class="form-box register">
+    <h2 class="animation" style="--i:17; --j:0;">Sign Up</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="input-box animation" style="--i:18; --j:1;">
+        <input type="text" formControlName="username" required />
+        <label>Usuario</label>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box animation" style="--i:19; --j:2;">
+        <input type="password" formControlName="password" required />
+        <label>Contraseña</label>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <div class="input-box animation" style="--i:20; --j:3;">
+        <input type="text" formControlName="codigoEmpleado" required />
+        <label>Código Empleado</label>
+        <i class="bx bxs-id-card"></i>
+      </div>
+      <button type="submit" class="btn animation" style="--i:21; --j:4;">Registrar</button>
+      <div class="logreg-link animation" style="--i:22; --j:5;">
+        <p>¿Ya tienes una cuenta? 
+          <a href="#" (click)="toggleForms(false)" class="login-link">Inicia Sesión</a>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <div class="info-text register">
+    <h2 class="animation" style="--i:17; --j:0;">Únete a nosotros</h2>
+    <p class="animation" style="--i:18; --j:1;">
+      Y disfruta de las ofertas exclusivas para nuestros usuarios
+    </p>
+  </div>
+  </div>
+</main>

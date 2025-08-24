@@ -1,0 +1,71 @@
+<!--features/tablas/empleado/empleado-table/empleado-table.html-->
+<ng-container *ngIf="empleados$ | async as empleados; else cargando">
+  <table class="mi-tabla-empleados">
+    <thead>
+      <tr>
+        <th>Código</th><th>Nombre</th><th>Apellido</th>
+        <th>DNI</th><th>Teléfono</th><th>Cargo</th>
+        <th>Distrito</th><th>Estado</th><th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empleados; trackBy: trackById">
+        <td>{{ emp.codigo }}</td>
+        <td>{{ emp.nombre }}</td>
+        <td>{{ emp.apellido }}</td>
+        <td>{{ emp.dni || '-' }}</td>
+        <td>{{ emp.telefono || '-' }}</td>
+        <td>{{ emp.cargo.descripcion }}</td>
+        <td>{{ emp.distrito.descripcion }}</td>
+        <td>
+          <span [class.activo]="emp.estado"
+                [class.inactivo]="!emp.estado">
+            {{ emp.estado ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td>
+          <button (click)="editarEmpleado.emit(emp)">Editar</button>
+          <button [class.estado-activo]="emp.estado" [class.estado-inactivo]="!emp.estado"  (click)="toggleEstado(emp)">
+            {{ emp.estado ? 'Desactivar' : 'Activar' }}
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!empleados.length">
+        <td colspan="9">No hay datos para estos filtros.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #cargando>
+  <div class="loader">Cargando empleados…</div>
+</ng-template>
+
+
+<!-- features/tablas/empleado/empleado-table/empleado-table.html 
+<ng-container *ngIf="empleados$ | async as lista">
+  <tr *ngFor="let emp of lista">
+    <td>{{ emp.codigo }}</td>
+    <td>{{ emp.nombre }}</td>
+    <td>{{ emp.apellido }}</td>
+    <td>{{ emp.dni || '-' }}</td>
+    <td>{{ emp.telefono || '-' }}</td>
+    <td>{{ emp.cargo.descripcion }}</td>
+    <td>{{ emp.distrito.descripcion }}</td>
+    <td>
+      <span [class.estado-activo]="emp.estado" [class.estado-inactivo]="!emp.estado">
+        {{ emp.estado ? 'Activo' : 'Inactivo' }}
+      </span>
+    </td>
+      <td>
+        <button (click)="toggleEstado(emp)" class="btn btn-sm"
+          [ngClass]="emp.estado ? 'btn-danger' : 'btn-success'">
+          {{ emp.estado ? 'Desactivar' : 'Activar' }}
+        </button>
+      </td>
+  </tr>
+  <tr *ngIf="lista.length === 0">
+    <td colspan="8" class="sin-datos">No hay empleados para estos filtros.</td>
+  </tr>   
+</ng-container>
+-->
+

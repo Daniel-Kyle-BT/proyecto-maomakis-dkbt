@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-inicio',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './inicio.html'
+  templateUrl: './inicio.html',
+  styleUrls: ['./inicio.css']
 })
 export class InicioComponent {}

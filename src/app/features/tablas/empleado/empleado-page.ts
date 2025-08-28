@@ -86,5 +86,6 @@ export class EmpleadoPageComponent {
   onCancel() {
     this.showForm = false;
   }
+  
 }
 

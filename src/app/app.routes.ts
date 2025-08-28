@@ -9,6 +9,7 @@ import { RoleGuard } from '@core/auth/role-guard';
 import { InicioComponent } from '@features/inicio/inicio';
 import { LoginGuard } from '@core/auth/login.guard';
 import { EmpleadoPageComponent } from '@features/tablas/empleado/empleado-page';
+import { MenuComponent } from '@features/tablas/menu/menu';
 
 export const routes: Routes = [
   // Ruta inicial → Login
@@ -26,7 +27,8 @@ export const routes: Routes = [
       { path: 'reportes', component: ReportesComponent, canActivate: [RoleGuard(['Supervisor'])] },
       { path: 'pedidos', component: PedidosComponent, canActivate: [RoleGuard(['Mesero', 'Cajero'])] },
       { path: 'facturacion', component: FacturacionComponent, canActivate: [RoleGuard(['Cajero'])] },
-      { path: 'empleado', component: EmpleadoPageComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] }
+      { path: 'empleado', component: EmpleadoPageComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] },
+      { path: 'menu', component: MenuComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] }
     ]
   },
 

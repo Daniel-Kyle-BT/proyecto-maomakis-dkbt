@@ -11,6 +11,8 @@ import { LoginGuard } from '@core/auth/login.guard';
 import { EmpleadoPageComponent } from '@features/tablas/empleado/empleado-page';
 import { MenuComponent } from '@features/tablas/menu/menu';
 import { ClienteComponent } from '@features/tablas/Cliente/cliente';
+import { MesaPageComponent } from '@features/tablas/mesa/mesa-page';
+
 
 export const routes: Routes = [
   // Ruta inicial → Login
@@ -25,12 +27,14 @@ export const routes: Routes = [
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent }, // o un componente de bienvenida
       // Rutas protegidas por rol
-      { path: 'reportes', component: ReportesComponent, canActivate: [RoleGuard(['Supervisor'])] },
-      { path: 'pedidos', component: PedidosComponent, canActivate: [RoleGuard(['Mesero', 'Cajero'])] },
-      { path: 'facturacion', component: FacturacionComponent, canActivate: [RoleGuard(['Cajero'])] },
+      { path: 'reportes', component: ReportesComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] },
+      { path: 'pedidos', component: PedidosComponent, canActivate: [RoleGuard(['Administrador','Mesero', 'Cajero'])] },
+      { path: 'facturacion', component: FacturacionComponent, canActivate: [RoleGuard(['Administrador','Cajero'])] },
       { path: 'empleado', component: EmpleadoPageComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] },
       { path: 'menu', component: MenuComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] },
-      { path: 'cliente', component: ClienteComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] }
+      { path: 'cliente', component: ClienteComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] },
+      { path: 'mesa', component: MesaPageComponent, canActivate: [RoleGuard(['Administrador','Supervisor'])] }
+
     ]
   },
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { AuthService } from '@core/auth/auth.service';
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  wrapperActive = false;
+  @ViewChild('wrapper', { static: false }) wrapperRef!: ElementRef<HTMLElement>;
   loginForm: FormGroup;
   registerForm: FormGroup;
 
@@ -29,8 +29,41 @@ export class LoginComponent {
     });
   }
 
-  toggleForms(active: boolean) {
+  /*toggleForms(active: boolean) {
     this.wrapperActive = active;
+  }*/
+  toggleForms(active: boolean): void {
+    const wrapperEl = this.wrapperRef.nativeElement;
+    const bgEl = wrapperEl.querySelector('.bg-animate') as HTMLElement;
+    // 1. Quito ambas clases
+    wrapperEl.classList.remove('active', 'deactive');
+    // 2. Forzar reflow para que la animación pueda reiniciarse
+    void wrapperEl.offsetWidth;
+    // 3. Agregar la clase correspondiente
+    wrapperEl.classList.add(active ? 'active' : 'deactive');
+
+    // Limpia clases previas
+    bgEl.classList.remove('forma2', 'forma3');
+
+    if (active) {
+      // Activar: forma1 → forma2 → forma3
+      setTimeout(() => {
+        bgEl.classList.add('forma2');
+        setTimeout(() => {
+          bgEl.classList.add('forma3');
+        }, 1000); // ← espera 1.2s para aplicar forma3
+      }, 600); // delay inicial
+    } else {
+      // Desactivar: forma3 → forma2 → forma1
+      bgEl.classList.add('forma3');
+      setTimeout(() => {
+        bgEl.classList.remove('forma3');
+        bgEl.classList.add('forma2');
+        setTimeout(() => {
+          bgEl.classList.remove('forma2');
+        }, 1000); // ← espera 1.2s para aplicar forma2
+      }, 600); // delay inicial
+    }
   }
 
   onLogin() {

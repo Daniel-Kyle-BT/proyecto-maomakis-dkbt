@@ -1,16 +1,6 @@
 // shared/components/select-api/select-api.ts
-
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  inject,
-  Inject
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges,
+  SimpleChanges, inject, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -20,13 +10,14 @@ import { Observable, of } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './select-api.html',
-  styleUrls: ['../../../features/tablas/empleado/empleado-page.css']
+  styleUrls: ['../../../features/tablas/tabla.css']
 })
 export class SelectApiComponent implements OnInit, OnChanges {
   @Input() label = 'Seleccione';  
   @Input() apiPath = '';           
   @Input() params: Record<string, string|number|undefined> = {};  
-  @Input() selectedId?: number|undefined;    
+  @Input() selectedId?: number|undefined;
+  @Input() containerClass = 'cbo-listar';     
 
   @Output() selectionChange = new EventEmitter<number>();
 
@@ -70,6 +61,10 @@ export class SelectApiComponent implements OnInit, OnChanges {
       `${this.config.apiUrl}${this.apiPath}`,
       { params: httpParams }
     );
+     // 👇 Asegura que el valor seleccionado se aplique después de cargar
+    if (this.selectedId != null) {
+      this.current = this.selectedId;
+    }
   }
 
   onChange(event: Event) {
@@ -80,47 +75,3 @@ export class SelectApiComponent implements OnInit, OnChanges {
 }
 
 
-/*
-import { Component, EventEmitter, Inject, Input, OnInit, Output, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-@Component({
-  selector: 'app-select-api',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    <label class="select-label">{{ label }}</label>
-    <select class="select-control" (change)="onChange($event)"><!-- ">-->
-      <option value="" >Seleccione..</option>
-       <option *ngFor="let item of (data$ | async)" [value]="item.id">
-        {{ item.descripcion }}
-      </option>
-    </select>
-  `,
-  styles: [`
-
-  `]
-})
-export class SelectApiComponent  implements OnInit {
-
-
-  @Input() apiPath = '';
-  @Input() label = 'Seleccionar';
-  @Output() selectionChange = new EventEmitter<number>();
-  data$!: Observable<any[]>; 
- 
-    // 👇 Traemos el apiUrl desde appConfig
-  constructor(@Inject('APP_CONFIG') private config: any) {}
-  //data: any[] = [];
-  private http = inject(HttpClient);
-  ngOnInit() {
-    this.data$ = this.http.get<any[]>(`${this.config.apiUrl}${this.apiPath}`);
-  }
-
-  onChange(event: Event) {
-    const id = +(event.target as HTMLSelectElement).value;
-    this.selectionChange.emit(id);
-  }
-}*/

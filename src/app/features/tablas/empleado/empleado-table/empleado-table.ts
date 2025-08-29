@@ -13,7 +13,7 @@ import { Empleado } from '../empleado.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
   templateUrl: './empleado-table.html',
-  styleUrls: ['../empleado-page.css']
+  styleUrls: ['../../tabla.css']
 })
 
 export class EmpleadoTableComponent implements OnInit {

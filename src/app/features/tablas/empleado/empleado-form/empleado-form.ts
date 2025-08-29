@@ -1,18 +1,7 @@
 // features/tablas/empleado/empleado-form/empleado-form.ts
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Empleado } from '../empleado.models';
 import { SelectApiComponent } from '@shared/components/select-api/select-api';
 
@@ -21,7 +10,7 @@ import { SelectApiComponent } from '@shared/components/select-api/select-api';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, SelectApiComponent],
   templateUrl: './empleado-form.html',
-  styleUrls: ['./empleado-form.css']
+  styleUrls: ['../../form.css']
 })
 export class EmpleadoFormComponent implements OnInit {
   @Input() empleado?: Empleado;
@@ -33,7 +22,6 @@ export class EmpleadoFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    // 1) Crear el form en OnInit, evitando usar `this.fb` antes de tiempo
     this.form = this.fb.group({
       codigo: ['', [Validators.required, Validators.minLength(6)]],
       nombre: ['', Validators.required],
@@ -47,7 +35,6 @@ export class EmpleadoFormComponent implements OnInit {
       idDistrito: [undefined as number | undefined, Validators.required]
     });
 
-    // 2) Si llegamos con empleado (editar), parcheamos valores
     if (this.empleado) {
       this.form.patchValue({
         codigo: this.empleado.codigo,
@@ -57,9 +44,9 @@ export class EmpleadoFormComponent implements OnInit {
         telefono: this.empleado.telefono ?? '',
         estado: this.empleado.estado,
         idCargo: this.empleado.cargo.id,
-        idDistrito: this.empleado.distrito.id,
+        idDepartamento: this.empleado.distrito.provincia.departamento,
         idProvincia: this.empleado.distrito.provincia.id,
-        idDepartamento: this.empleado.distrito.provincia.departamento.id
+        idDistrito: this.empleado.distrito.id
       });
     }
     this.form.get('idDepartamento')?.valueChanges.subscribe(() => {
@@ -71,7 +58,6 @@ export class EmpleadoFormComponent implements OnInit {
 
   }
 
-
   get idDepartamento(): number | undefined {
     return this.form.get('idDepartamento')?.value;
   }
@@ -79,11 +65,9 @@ export class EmpleadoFormComponent implements OnInit {
     return this.form.get('idProvincia')?.value;
   }
 
-
   guardar() {
     if (this.form.invalid) return;
 
-    // 3) Cast seguro de raw values para evitar null/undefined
     const raw = this.form.value as {
       codigo: string;
       nombre: string;

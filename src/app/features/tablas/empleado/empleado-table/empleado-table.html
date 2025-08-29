@@ -4,28 +4,31 @@
     <thead>
       <tr>
         <th>Código</th><th>Nombre</th><th>Apellido</th>
-        <th>DNI</th><th>Teléfono</th><th>Cargo</th>
-        <th>Distrito</th><th>Estado</th><th>Acción</th>
+        <th>DNI</th><th>Teléfono</th><th>Cargo</th><th>Provincia</th>
+        <th>Distrito</th><th>Estado</th><th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let emp of empleados; trackBy: trackById">
-        <td>{{ emp.codigo }}</td>
+        <td class="centrado">{{ emp.codigo }}</td>
         <td>{{ emp.nombre }}</td>
         <td>{{ emp.apellido }}</td>
-        <td>{{ emp.dni || '-' }}</td>
-        <td>{{ emp.telefono || '-' }}</td>
+        <td class="centrado">{{ emp.dni || '-' }}</td>
+        <td class="centrado">{{ emp.telefono || '-' }}</td>
         <td>{{ emp.cargo.descripcion }}</td>
+        <td>{{ emp.distrito.provincia.descripcion }}</td>
         <td>{{ emp.distrito.descripcion }}</td>
-        <td>
+        <td class="centrado">
           <span [class.activo]="emp.estado"
                 [class.inactivo]="!emp.estado">
             {{ emp.estado ? 'Activo' : 'Inactivo' }}
           </span>
         </td>
-        <td>
-          <button (click)="editarEmpleado.emit(emp)">Editar</button>
-          <button [class.estado-activo]="emp.estado" [class.estado-inactivo]="!emp.estado"  (click)="toggleEstado(emp)">
+        <td class="centrado botones">
+          <button class="btn btn-info" (click)="editarEmpleado.emit(emp)">Editar</button>
+          <button class="btn" [class.estado-activo]="emp.estado" 
+          [ngClass]="emp.estado ? 'btn-danger' : 'btn-primary'"
+          [class.estado-inactivo]="!emp.estado"  (click)="toggleEstado(emp)">
             {{ emp.estado ? 'Desactivar' : 'Activar' }}
           </button>
         </td>

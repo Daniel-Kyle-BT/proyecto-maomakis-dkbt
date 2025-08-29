@@ -1,0 +1,38 @@
+<!--/tablas/mesa/mesa-page.html-->
+<main>
+  <div class="modalcs-backdrop" *ngIf="showForm">
+    <div class="modalcs" style="width: 860px;">
+      <app-mesa-form [mesa]="selectedMesa" (save)="onSave($event)" (cancel)="onCancel()"></app-mesa-form>
+    </div>
+  </div>
+  <div class="cont_tabla">
+    <section class="table_header">
+      <div class="row">
+        <h1>Lista de Mesas</h1>
+      </div>
+      <div class="row">
+        <div>
+          <div class="boton-header">
+            <button class="boton-btn" (click)="nuevaMesa()">Nueva</button>
+          </div>
+        </div>
+        <div>
+          <div class="buscardor">
+            <label>Número de Mesa</label>
+            <input type="number" [(ngModel)]="filtros.numeroMesa"
+              (ngModelChange)="onFiltroChange('numeroMesa', $event)" />
+          </div>
+          <app-select-api [label]="'Sucursal'" [apiPath]="'/sucursales'"
+            (selectionChange)="onFiltroChange('idSucursal', $event)"></app-select-api>
+          <app-select-api [label]="'Estado'" [apiPath]="'/estados'"  [selectedId]="filtros.idEstado"
+            (selectionChange)="onFiltroChange('idEstado', $event)"></app-select-api>
+        </div>
+      </div>
+    </section>
+    <section class="table_body">
+      <app-mesa-table [idSucursal]="filtros.idSucursal" [idEstado]="filtros.idEstado" [numeroMesa]="filtros.numeroMesa"
+        (editarMesa)="editarMesa($event)">
+      </app-mesa-table>
+    </section>
+  </div>
+</main>

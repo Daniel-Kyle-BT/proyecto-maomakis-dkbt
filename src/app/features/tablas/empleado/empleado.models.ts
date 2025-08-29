@@ -1,21 +1,6 @@
 // features/tablas/empleado/empleado.models.ts
 
-export interface Distrito {
-  id: number;
-  descripcion: string;
-  provincia: Provincia;
-}
-
-export interface Provincia {
-  id: number;
-  descripcion: string;
-  departamento: Departamento;
-}
-
-export interface Departamento {
-  id: number;
-  descripcion: string;
-}
+import { Distrito } from '@shared/models/ubicacion.model';
 
 export interface CargoEmpleado {
   id: number;

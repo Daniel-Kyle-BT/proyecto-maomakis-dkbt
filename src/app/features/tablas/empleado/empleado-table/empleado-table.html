@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <th>Código</th><th>Nombre</th><th>Apellido</th>
-        <th>DNI</th><th>Teléfono</th><th>Cargo</th><th>Provincia</th>
+        <th>DNI</th><th>Teléfono</th><th>Cargo</th>
         <th>Distrito</th><th>Estado</th><th>Acciones</th>
       </tr>
     </thead>
@@ -16,7 +16,6 @@
         <td class="centrado">{{ emp.dni || '-' }}</td>
         <td class="centrado">{{ emp.telefono || '-' }}</td>
         <td>{{ emp.cargo.descripcion }}</td>
-        <td>{{ emp.distrito.provincia.descripcion }}</td>
         <td>{{ emp.distrito.descripcion }}</td>
         <td class="centrado">
           <span [class.activo]="emp.estado"

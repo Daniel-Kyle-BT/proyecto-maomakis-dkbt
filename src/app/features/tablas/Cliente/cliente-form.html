@@ -1,0 +1,33 @@
+<div class="modal-backdrop" (click)="onClose()"></div>
+<div class="modal-cliente">
+  <h3>{{ isEdit ? 'Editar Cliente' : 'Nuevo Cliente' }}</h3>
+  <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+    <div class="form-group">
+      <label>Código</label>
+      <input type="text" [(ngModel)]="cliente.codigo" name="codigo" required maxlength="6" />
+    </div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="cliente.nombre" name="nombre" required maxlength="100" />
+    </div>
+    <div class="form-group">
+      <label>Apellido</label>
+      <input type="text" [(ngModel)]="cliente.apellido" name="apellido" required maxlength="100" />
+    </div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="cliente.telefono" name="telefono" maxlength="15" />
+    </div>
+    <div class="form-group">
+      <label>Estado</label>
+      <select [(ngModel)]="cliente.estado" name="estado">
+        <option [ngValue]="true">Activo</option>
+        <option [ngValue]="false">Inactivo</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button type="submit" [disabled]="clienteForm.invalid">{{ isEdit ? 'Guardar Cambios' : 'Crear' }}</button>
+      <button type="button" (click)="onClose()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<main>
+  <!-- Modal básico -->
+  <div class="modal-backdrop" *ngIf="showForm">
+    <div class="modal">
+      <app-cliente-form [cliente]="selectedCliente" (save)="onSave($event)" (cancel)="onCancel()"></app-cliente-form>
+    </div>
+  </div>
+
+  <div class="cont_tabla">
+    <section class="table_header">
+      <div class="row">
+        <h1>Lista de Clientes</h1>
+      </div>
+      <div class="row">
+        <div class="boton-header">
+          <button class="boton-btn" (click)="nuevoCliente()">Nuevo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="table_body">
+      <app-cliente-table (editarCliente)="editarCliente($event)" (eliminarCliente)="onEliminar($event)"></app-cliente-table>
+    </section>
+  </div>
+</main>

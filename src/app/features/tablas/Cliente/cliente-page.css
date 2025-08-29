@@ -1,0 +1,270 @@
+/* features/tablas/empleado/empleado-page.css */
+*{
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: rgba(0,0,0,0.45);
+	display: grid;
+	place-items: center;
+	padding: 2rem;
+	z-index: 1000;
+}
+.modal {
+	background: #ffffff;
+	padding: 1.75rem 1.5rem 1.25rem;
+	border-radius: 14px;
+	width: 520px;
+	max-width: min(92vw, 560px);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+main {
+	align-items:start;
+	padding-top: 3vh;
+}
+
+table, th, td {
+	border-collapse: collapse;
+	padding: 0.8rem;
+}
+
+.cont_tabla {
+	background-color: rgba(230, 230, 230, 0.6);
+	width: min(96vw, 1500px);
+	height: auto;
+	max-height: 88vh;
+	display: flex;
+	justify-content: center;        
+	flex-wrap: wrap;
+	border-radius: 0.8rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*******************************************CABEZERA DE LA TABLA********************************************************/
+.table_header {
+	display: flex;
+	width: 95%;
+	margin-top: 1%;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+/****************************Divisor de Titulo y botones****************************/
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+	justify-content: space-between;
+	
+}
+
+/*************************Titulo*************************/
+.row>h1 {
+	font-size: 2rem;
+	color: #162447;
+	margin-bottom: 0.8vh; 
+}
+
+/***************Botones, Imputs y ComBox*****************/
+.row>div, .row>form{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: auto;    
+	height: 2.3vw;
+	min-height: 35px;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.6vh; 
+}
+
+/*************Botones**************/
+.boton-header { display:flex; align-items:center; }
+.boton-btn {
+	--bg: linear-gradient(135deg, #396afc, #2948ff);
+	background: var(--bg);
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	padding: 0.7rem 1.6rem;
+	cursor: pointer;
+	font-size: 1rem;
+	line-height: 1;
+	transition: transform .08s ease, box-shadow .2s ease;
+	box-shadow: 0 6px 12px rgba(41,72,255,.25);
+}
+.boton-btn:hover { transform: translateY(-1px); }
+.boton-btn:active { transform: translateY(0); }
+
+/*************ComBox e Imputs***************/
+.cbo-listar, .buscardor {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+	margin: 0 1rem;
+}
+
+.cbo-listar > label, .buscardor > label {
+	font-size: 1rem;
+	white-space: nowrap;
+	display: block;
+	padding: 0.5rem 1rem;
+	margin: 0 3%;
+	border-radius: 0.5rem;
+	background-color: #d5d1defe;
+}
+
+.cbo-listar > select,
+.buscardor > input {
+	height: 2.15rem;
+	font-size: 1rem;
+	background-color: white;
+	border-radius: 0.4rem;
+	border: 2px solid rgb(200, 200, 200);
+	outline: none;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilos individuales */
+.cbo-listar > select {
+	padding: 0.2rem 0.8rem;
+	width: auto;
+}
+
+.buscardor > input {
+	width: 13rem;
+	padding-left: 8px;
+}
+
+.btn-label {
+	font-size: 1rem;
+	white-space: nowrap;
+	display: block;
+	padding: 0.5rem 1rem;
+	margin-left: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: #d5d1defe;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	height: 2.15rem;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto enfocar o pasar*/
+.cbo-listar > select:hover,
+.cbo-listar > select:focus,
+.buscardor > input:hover,
+.buscardor > input:focus {
+	border-color: #66ccff;
+	box-shadow: 0 0 5px #66ccff;
+}
+
+.btn-label:hover,
+.btn-label:focus {
+	background-color: #e0dfee;
+	box-shadow: 0 0 5px #66ccff;
+}
+
+
+/*******************************************CUERPO DE LA TABLA********************************************************/
+.table_body {
+	background-color: white;
+	width: 95%;
+	max-height: 65vh;
+	border-radius: 0.6rem;
+	overflow: auto;
+	margin-top: 0.6%;
+	margin-bottom: 2%; 
+}
+
+.table_body::-webkit-scrollbar {
+	width: 0.5rem;
+	height: 0.5rem;
+}
+
+.table_body::-webkit-scrollbar-thumb {
+	border-radius: .5rem;
+	background-color: #0004;
+	visibility: hidden;
+}
+
+.table_body:hover::-webkit-scrollbar-thumb {
+	visibility: visible;
+}
+
+table {
+	width: 100%;
+}
+
+thead  th {
+	position: sticky;
+	top: 0;
+	left: 0;
+	background-color: #d5d1defe;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #0000000b;
+}
+
+/**************************** Extras Para la Tabla ****************************/
+
+.centrado {
+	text-align: center;
+	text-wrap: nowrap;
+}
+
+td.centrado form {
+	display: inline-block;
+	margin: 0 0.3rem;
+}
+
+/**************************** Botones y Efectos ****************************/
+.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;         
+		height: 36px;    
+		width: auto;
+		min-width: 100px;              
+		padding: 0 1rem;
+		color: #fff;
+		cursor: pointer;
+		font-size: 1rem;
+		border: none;
+		background-color: #7a7a7a;
+		transition: transform .08s ease, box-shadow .2s ease, background .2s;
+		text-align: center;
+		white-space: nowrap;
+		box-shadow: 0 4px 10px rgba(0,0,0,.12);
+}
+
+/************ Variantes de color ************/
+.btn.btn-danger { background: linear-gradient(135deg, #ff6a6a, #ff2a2a); }
+.btn.btn-danger:hover { filter: brightness(1.02); }
+.btn.btn-info { background: linear-gradient(135deg, #3fe28f, #18b26b); }
+.btn.btn-info:hover { filter: brightness(1.02); }
+.btn.btn-primary { background: linear-gradient(135deg, #396afc, #2948ff); }
+.btn.btn-primary:hover { filter: brightness(1.02); }
+
+.acciones { display:flex; gap: 10px; align-items:center; justify-content:flex-end; }
+.td-acciones { text-align: right; }
+.btn-accion {
+	border-radius: 10px;
+	padding: 0.55rem 1.1rem;
+	font-weight: 600;
+	box-shadow: 0 4px 10px rgba(0,0,0,.12);
+}
+.btn-editar { background: linear-gradient(135deg, #6a9eff, #2f6bff); color:#fff; }
+.btn-eliminar { background: linear-gradient(135deg, #ff7676, #ff3b3b); color:#fff; }

@@ -1,3 +1,5 @@
+// features/tablas/empleado/empleado.models.ts
+
 export interface Distrito {
   id: number;
   descripcion: string;

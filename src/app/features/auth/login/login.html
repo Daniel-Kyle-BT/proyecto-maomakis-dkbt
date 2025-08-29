@@ -1,8 +1,16 @@
 <main>
-  <div class="wrapper" [class.active]="wrapperActive">
-  <span class="bg-animate"></span>
-  <span class="bg-animate2"></span>
-
+  <div #wrapper class="wrapper">
+    <div class="cont-bg1">
+      <div class="bg-animate"></div>
+    </div>
+    <div class="cont-bg2">
+      <svg class="bg-animate2" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polygon class="shape" points="0,0 41,0 78,100 0,100"></polygon>
+      </svg>
+      <svg class="bg-animate3" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polygon class="shape" points="59,0 100,0 100,100 22,100"></polygon>
+      </svg>
+    </div>
   <!-- LOGIN -->
   <div class="form-box login">
     <h2 class="animation" style="--i:0; --j:21;">Login</h2>

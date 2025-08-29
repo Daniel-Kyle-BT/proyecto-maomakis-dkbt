@@ -1,6 +1,4 @@
 <!-- features/tablas/empleado/empleado-form/empleado-form.html -->
-
-<!-- features/tablas/empleado/empleado-form/empleado-form.html -->
 <h2>{{ empleado ? 'Editar Empleado' : 'Nuevo Empleado' }}</h2>
 
 <form [formGroup]="form" (ngSubmit)="guardar()">
@@ -34,16 +32,15 @@
     <input type="checkbox" formControlName="estado" /> Activo
   </div>
 
-  <ng-container *ngIf="form.get('idCargo')?.value">
+
 <app-select-api
   [label]="'Cargo'"
   [apiPath]="'/cargos'"
-  [selectedId]="form.get('idCargo')?.value"
-  (selectionChange)="form.patchValue({ idCargo: $event })">
+  (selectionChange)="form.patchValue({ idCargo: $event })"
+  [selectedId]="form.get('idCargo')?.value">
 </app-select-api>
-</ng-container>
 
-<ng-container *ngIf="form.get('idDepartamento')?.value">
+
 <app-select-api
   [label]="'Departamento'"
   [apiPath]="'/departamentos'"
@@ -52,7 +49,6 @@
     form.patchValue({ idDepartamento: $event, idProvincia: undefined, idDistrito: undefined })
   ">
 </app-select-api>
-</ng-container>
 
 <ng-container *ngIf="form.get('idDepartamento')?.value">
 <app-select-api
@@ -62,7 +58,8 @@
   [selectedId]="form.get('idProvincia')?.value"
   (selectionChange)="
     form.patchValue({ idProvincia: $event, idDistrito: undefined })
-  ">
+  "
+  >
 </app-select-api>
 </ng-container>
 

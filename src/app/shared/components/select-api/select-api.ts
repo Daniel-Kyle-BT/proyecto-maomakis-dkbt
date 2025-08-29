@@ -1,16 +1,6 @@
 // shared/components/select-api/select-api.ts
-
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  inject,
-  Inject
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges,
+  SimpleChanges, inject, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -70,6 +60,10 @@ export class SelectApiComponent implements OnInit, OnChanges {
       `${this.config.apiUrl}${this.apiPath}`,
       { params: httpParams }
     );
+     // 👇 Asegura que el valor seleccionado se aplique después de cargar
+    if (this.selectedId != null) {
+      this.current = this.selectedId;
+    }
   }
 
   onChange(event: Event) {

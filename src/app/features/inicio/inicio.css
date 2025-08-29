@@ -1,0 +1,9 @@
+main {
+    width: 100vw;
+    height: 92vh;
+    background-image: url(https://img.freepik.com/fotos-premium/juego-rollos-sushi-jengibre-wasabi-salsa-soja-sobre-fondo-piedra-negra-cocina-tradicional-japonesa-vista-superior-estilo-rustico_187166-2388.jpg);
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

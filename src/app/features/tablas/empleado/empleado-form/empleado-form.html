@@ -1,13 +1,12 @@
 <!-- features/tablas/empleado/empleado-form/empleado-form.html -->
-
-<!-- features/tablas/empleado/empleado-form/empleado-form.html -->
-<h2>{{ empleado ? 'Editar Empleado' : 'Nuevo Empleado' }}</h2>
-
+<div class="cabezera">
+  <h2>{{ empleado ? 'Editar Empleado' : 'Nuevo Empleado' }}</h2>
+</div>
 <form [formGroup]="form" (ngSubmit)="guardar()">
-  <div class="form-field">
+  <!--<div class="form-field">
     <label>Código</label>
     <input formControlName="codigo" />
-  </div>
+  </div>-->
 
   <div class="form-field">
     <label>Nombre</label>
@@ -29,55 +28,61 @@
     <input formControlName="telefono" />
   </div>
 
-  <div class="form-field">
-    <label>Estado</label>
-    <input type="checkbox" formControlName="estado" /> Activo
+  <div *ngIf="empleado">
+    <div class="field">
+      <label>Cargo actual</label>
+      <input [value]="empleado.cargo.descripcion" disabled />
+    </div>
+  </div>
+  <app-select-api [label]="'Nuevo Cargo'" containerClass="cbo-form" [apiPath]="'/cargos'"
+  [selectedId]="form.get('idCargo')?.value"
+    (selectionChange)="form.patchValue({ idCargo: $event })">
+  </app-select-api>
+
+  <div class="direcciones">
+    <div>
+      <div *ngIf="empleado">
+        <div class="field">
+          <label>Departamento actual</label>
+          <input [value]="empleado.distrito.provincia.departamento.descripcion" disabled />
+        </div>
+      </div>
+      <app-select-api [label]="'Nuevo Departamento'" containerClass="cbo-form" [apiPath]="'/departamentos'"
+      
+        (selectionChange)="form.patchValue({ idDepartamento: $event, idProvincia: undefined, idDistrito: undefined })">
+      </app-select-api>
+    </div>
+    <div>
+
+      <div *ngIf="empleado">
+        <div class="field">
+          <label>Provincia actual</label>
+          <input [value]="empleado.distrito.provincia.descripcion" disabled />
+        </div>
+      </div> <ng-container *ngIf="form.get('idDepartamento')?.value">
+        <app-select-api [label]="'Nueva Provincia'" containerClass="cbo-form" [apiPath]="'/provincias'"
+          [params]="{ idDepartamento: idDepartamento }" 
+          (selectionChange)="form.patchValue({ idProvincia: $event, idDistrito: undefined })">
+        </app-select-api>
+      </ng-container>
+    </div>
+    <div>
+      <div *ngIf="empleado">
+        <div class="field">
+          <label>Distrito actual</label>
+          <input [value]="empleado.distrito.descripcion" disabled />
+        </div>
+      </div>
+      <ng-container *ngIf="form.get('idProvincia')?.value">
+        <app-select-api [label]="'Nuevo Distrito'" containerClass="cbo-form" [apiPath]="'/distritos'"
+          [params]="{ idProvincia: idProvincia }"  (selectionChange)="form.patchValue({ idDistrito: $event })">
+        </app-select-api>
+      </ng-container>
+    </div>
   </div>
 
-  <ng-container *ngIf="form.get('idCargo')?.value">
-<app-select-api
-  [label]="'Cargo'"
-  [apiPath]="'/cargos'"
-  [selectedId]="form.get('idCargo')?.value"
-  (selectionChange)="form.patchValue({ idCargo: $event })">
-</app-select-api>
-</ng-container>
-
-<ng-container *ngIf="form.get('idDepartamento')?.value">
-<app-select-api
-  [label]="'Departamento'"
-  [apiPath]="'/departamentos'"
-  [selectedId]="form.get('idDepartamento')?.value"
-  (selectionChange)="
-    form.patchValue({ idDepartamento: $event, idProvincia: undefined, idDistrito: undefined })
-  ">
-</app-select-api>
-</ng-container>
-
-<ng-container *ngIf="form.get('idDepartamento')?.value">
-<app-select-api
-  [label]="'Provincia'"
-  [apiPath]="'/provincias'"
-  [params]="{ idDepartamento: idDepartamento }"
-  [selectedId]="form.get('idProvincia')?.value"
-  (selectionChange)="
-    form.patchValue({ idProvincia: $event, idDistrito: undefined })
-  ">
-</app-select-api>
-</ng-container>
-
-<ng-container *ngIf="form.get('idProvincia')?.value">
-<app-select-api
-  [label]="'Distrito'"
-  [apiPath]="'/distritos'"
-  [params]="{ idProvincia: idProvincia }"
-  [selectedId]="form.get('idDistrito')?.value"
-  (selectionChange)="form.patchValue({ idDistrito: $event })">
-</app-select-api>
-</ng-container>
-
   <div class="form-actions">
-    <button type="button" (click)="cancelar()">Cancelar</button>
-    <button type="submit" [disabled]="form.invalid">Guardar</button>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar</button>
+    <button class="btn btn-danger" type="button" (click)="cancelar()">Cancelar</button>
   </div>
 </form>

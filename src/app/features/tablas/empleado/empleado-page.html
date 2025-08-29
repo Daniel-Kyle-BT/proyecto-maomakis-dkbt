@@ -1,8 +1,7 @@
 <!--/tablas/empleado/empleado-page.html-->
 <main>
-  <!-- Modal básico -->
   <div class="modal-backdrop" *ngIf="showForm">
-    <div class="modal">
+    <div class="modal" style="max-width: 80%;">
       <app-empleado-form [empleado]="selectedEmpleado" (save)="onSave($event)" (cancel)="onCancel()">
       </app-empleado-form>
     </div>
@@ -49,7 +48,6 @@
         [idProvincia]="filtros.idProvincia" [idDepartamento]="filtros.idDepartamento" [estado]="filtros.estado"
         (editarEmpleado)="editarEmpleado($event)">
       </app-empleado-table>
-
     </section>
   </div>
 </main>

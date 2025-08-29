@@ -1,0 +1,37 @@
+<div class="cabezera">
+  <h2>{{ mesa ? 'Editar Mesa' : 'Nueva Mesa' }}</h2>
+</div>
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <div class="form-field">
+    <label>Número de Mesa</label>
+    <input formControlName="numeroMesa" />
+  </div>
+
+  <div class="form-field">
+    <label>Capacidad</label>
+    <input formControlName="capacidad" />
+  </div>
+  <div *ngIf="mesa">
+    <div class="field">
+      <label>Sucursal actual</label>
+      <input [value]="mesa.sucursal.nombre" disabled />
+    </div>
+  </div>
+  <app-select-api [label]="'Nueva Sucursal'" containerClass="cbo-form" [apiPath]="'/sucursales'"
+    [selectedId]="form.get('idSucursal')?.value" (selectionChange)="form.patchValue({ idSucursal: $event })">
+  </app-select-api>
+
+  <div *ngIf="mesa">
+    <div class="field">
+      <label>Estado actual</label>
+      <input [value]="mesa.estado.descripcion" disabled />
+    </div>
+  </div>
+  <app-select-api [label]="'Nuevo Estado'" containerClass="cbo-form" [apiPath]="'/estados'"
+    (selectionChange)="form.patchValue({ idEstado: $event })" [selectedId]="form.get('idEstado')?.value">
+  </app-select-api>
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar</button>
+    <button class="btn btn-danger" type="button" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

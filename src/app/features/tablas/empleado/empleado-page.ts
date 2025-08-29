@@ -5,7 +5,7 @@ import { SelectApiComponent } from '@shared/components/select-api/select-api';
 import { EmpleadoTableComponent } from "./empleado-table/empleado-table";
 import { EmpleadoFormComponent } from './empleado-form/empleado-form';
 import { EmpleadoService } from './empleado.service';
-import { Empleado, CargoEmpleado, Distrito } from './empleado.models';
+import { Empleado} from './empleado.models';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 interface Filtros {
@@ -28,7 +28,7 @@ interface Filtros {
     EmpleadoFormComponent
   ],
   templateUrl: './empleado-page.html',
-  styleUrls: ['./empleado-page.css']
+  styleUrls: ['../tabla.css']
 })
 
 export class EmpleadoPageComponent {
@@ -86,5 +86,6 @@ export class EmpleadoPageComponent {
   onCancel() {
     this.showForm = false;
   }
+  
 }
 

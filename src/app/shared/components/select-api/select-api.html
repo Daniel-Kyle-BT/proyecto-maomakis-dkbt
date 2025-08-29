@@ -1,8 +1,8 @@
 <!-- src/app/shared/components/select-api/select-api.component.html -->
-<div class="cbo-listar">
+<div [class]="containerClass">
   <label class="select-label">{{ label }}</label>
   <select class="select-control" [value]="current" (change)="onChange($event)">
-    <option [value]="''">--Seleccione--</option>
+    <option [value]="">Seleccione</option>
     <option *ngFor="let item of (data$ | async)" [value]="item.id">
       {{ item.descripcion }}
     </option>

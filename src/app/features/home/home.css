@@ -7,8 +7,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1e1e2f; /* 🔧 Color de fondo navbar */
-  padding: 10px 20px;
+  background: #20202a; /* 🔧 Color de fondo navbar */
+  height: 8vh;
   font-family: 'Poppins', sans-serif;
   color: #fff;
   flex-wrap: wrap; /* Para responsive */

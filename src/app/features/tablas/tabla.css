@@ -1,4 +1,4 @@
-/* features/tablas/empleado/empleado-page.css */
+/* features/tablas/tabla.css */
 *{
     padding: 0px;
     margin: 0px;
@@ -7,24 +7,37 @@
     font-family: sans-serif;
 }
 
+/********************************************/
 .modal-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.5);
-  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(1px);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
   z-index: 1000;
 }
 .modal {
-  background: white;
-  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 0px 10px 20px;
   border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
+  width: auto;
+  height: auto;
+  max-height: 99%;
 }
-
+/*********************************************/
 main {
 	align-items:start;
 	padding-top: 3vh;
+    width: 100vw;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    background-image: url(https://img.freepik.com/fotos-premium/juego-rollos-sushi-jengibre-wasabi-salsa-soja-sobre-fondo-piedra-negra-cocina-tradicional-japonesa-vista-superior-estilo-rustico_187166-2388.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 table, th, td {
@@ -88,7 +101,8 @@ table, th, td {
     z-index: 0; 
     border-radius: 0.5rem;
     overflow: hidden;
-    background-color: #0011a8;
+    background-color:  rgb(233, 173, 0);
+    border: 3px solid rgb(230, 185, 0);
     height: 100%; 
     display: flex;
     align-items: center;
@@ -115,7 +129,7 @@ table, th, td {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0011a8, #0066ff, #0011a8);
+    background: linear-gradient(135deg, rgb(233, 173, 0), rgb(255, 202, 0), rgb(233, 173, 0));
     z-index: -1;
     opacity: 0;
     transition: 0.5s ease-in-out all;
@@ -135,7 +149,8 @@ table, th, td {
     margin: 0 1rem;
 }
 
-.cbo-listar > label, .buscardor > label {
+.buscardor > label,
+.cbo-listar > label {
     font-size: 1rem;
     white-space: nowrap;
     display: block;
@@ -143,6 +158,37 @@ table, th, td {
     margin: 0 3%;
     border-radius: 0.5rem;
     background-color: #d5d1defe;
+}
+
+.cbo-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 80px;
+  width: 380px;
+  margin: 10px;
+}
+
+.cbo-form > label {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+    display: block;
+    line-height: 40px;
+    width: 200px;
+    height: 40px;
+    border-radius: 0.5rem;
+}
+
+.cbo-form > select {
+    height: 40px;
+    font-size: 1rem;
+    background-color: white;
+    border-radius: 0.4rem;
+    border: 2px solid rgb(200, 200, 200);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .cbo-listar > select,
@@ -160,6 +206,11 @@ table, th, td {
 .cbo-listar > select {
     padding: 0.2rem 0.8rem;
     width: auto;
+}
+
+.cbo-form > select {
+    padding: 0.2rem 0.8rem;
+    width: 343px;
 }
 
 .buscardor > input {
@@ -184,22 +235,24 @@ table, th, td {
 /* Efecto enfocar o pasar*/
 .cbo-listar > select:hover,
 .cbo-listar > select:focus,
+.cbo-form > select:hover,
+.cbo-form > select:focus,
 .buscardor > input:hover,
 .buscardor > input:focus {
-    border-color: #66ccff;
-    box-shadow: 0 0 5px #66ccff;
+    border-color: rgb(255, 202, 0);
+    box-shadow: 0 0 5px rgb(255, 202, 0);
 }
 
 .btn-label:hover,
 .btn-label:focus {
     background-color: #e0dfee;
-    box-shadow: 0 0 5px #66ccff;
+    box-shadow: 0 0 5px rgb(255, 202, 0);
 }
 
 
 /*******************************************CUERPO DE LA TABLA********************************************************/
 .table_body {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     width: 95%;
     max-height: 65vh;
     border-radius: 0.6rem;
@@ -231,7 +284,8 @@ thead  th {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #d5d1defe;
+    background-color: #282839;
+    color: white;
 }
 
 tbody tr:nth-child(even) {
@@ -254,8 +308,15 @@ td.centrado form {
     margin: 0 0.3rem;       /* Espaciado entre botones */
 }
 
+td.centrado.botones {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: nowrap; /* o inline-flex si necesitas centrar dentro */
+    justify-content: center;
+}
 /**************************** Botones y Efectos ****************************/
 .btn {
+        margin: 0 0.3rem; 
     display: inline-flex;
     align-items: center;
     justify-content: center;

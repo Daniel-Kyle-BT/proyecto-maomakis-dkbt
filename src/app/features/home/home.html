@@ -1,7 +1,7 @@
 <nav class="navbar">
   <div class="navbar-left">
     <ul>
-      <li><a routerLink="inicio">Inicio</a></li>
+      <li><a routerLink="inicio">MAOMAKIS</a></li>
 
       <!-- Pedidos (Cajero o Mesero) -->
       <li *ngIf="rol === 'Cajero' || rol === 'Mesero'">
@@ -23,6 +23,8 @@
         <a href="javascript:void(0)" class="dropbtn">Tablas ▾</a>
         <div class="dropdown-content">
           <a routerLink="empleado">Empleado</a>
+          <a routerLink="menu">Menus</a>
+          <a routerLink="mesa">Mesas</a>
           <a routerLink="producto">Producto</a>
           <a routerLink="sucursal">Sucursal</a>
         </div>

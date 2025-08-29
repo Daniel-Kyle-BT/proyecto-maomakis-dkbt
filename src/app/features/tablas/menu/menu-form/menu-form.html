@@ -1,0 +1,19 @@
+<form #menuForm="ngForm" (ngSubmit)="guardarMenu()">
+  <input type="text" name="codigo" [(ngModel)]="nuevoMenu.codigo" placeholder="Código" required>
+  <input type="text" name="nombre" [(ngModel)]="nuevoMenu.nombre" placeholder="Nombre" required>
+  <input type="text" name="descripcion" [(ngModel)]="nuevoMenu.descripcion" placeholder="Descripción" required>
+  <input type="number" name="precio" [(ngModel)]="nuevoMenu.precio" placeholder="Precio" required>
+  <input type="number" name="tiempoPreparacion" [(ngModel)]="nuevoMenu.tiempoPreparacion" placeholder="Tiempo de preparación (min)" required>
+
+  <select name="categoria" [(ngModel)]="nuevoMenu.categoria" required>
+    <option [ngValue]="null" disabled selected>Selecciona una categoría</option>
+    <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.descripcion }}</option>
+  </select>
+
+  <input type="file" name="imagen" (change)="onFileChange($event)">
+  <input type="text" name="rutaImagen" [(ngModel)]="nuevoMenu.rutaImagen" placeholder="Ruta de imagen" readonly>
+  <input type="text" name="nombreImagen" [(ngModel)]="nuevoMenu.nombreImagen" placeholder="Nombre de imagen" readonly>
+
+  <!-- Cambia el texto del botón según sea Crear o Editar -->
+  <button type="submit">{{ nuevoMenu.id ? 'Actualizar' : 'Agregar' }}</button>
+</form>

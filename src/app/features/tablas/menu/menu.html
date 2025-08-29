@@ -1,5 +1,7 @@
 <div class="container mt-4">
   <h2>Lista de Menús</h2>
+  <button class="btn btn-primary mb-3" (click)="nuevo()">Agregar Menú</button>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,21 +13,46 @@
         <th>Precio (S/)</th>
         <th>Tiempo Prep. (min)</th>
         <th>Imagen</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      @for (menu of menus; track menu.id) {
-        <tr>
-          <td>{{ menu.id }}</td>
-          <td>{{ menu.codigo }}</td>
-          <td>{{ menu.nombre }}</td>
-          <td>{{ menu.descripcion }}</td>
-          <td>{{ menu.categoria.descripcion}}</td>
-          <td>{{ menu.precio | number:'1.2-2' }}</td>
-          <td>{{ menu.tiempoPreparacion }}</td>
-          <td><img [src]="menu.nombreImagen" alt="menu" /></td>
-        </tr>
-      }
+      <tr *ngFor="let menu of menus; trackBy: trackById">
+        <td>{{ menu.id }}</td>
+        <td>{{ menu.codigo }}</td>
+        <td>{{ menu.nombre }}</td>
+        <td>{{ menu.descripcion }}</td>
+        <td>{{ menu.categoria.descripcion }}</td>
+        <td>{{ menu.precio | number:'1.2-2' }}</td>
+        <td>{{ menu.tiempoPreparacion }}</td>
+        <td>
+          <img [src]="'http://localhost:8080/img/menu/' + menu.nombreImagen"  alt="menu" width="60" />
+        </td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2" (click)="editar(menu)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="eliminar(menu)">Eliminar</button>
+        </td>
+      </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Modal reutilizado -->
+<div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="menuModalLabel">
+          {{ menuSeleccionado ? 'Editar Menú' : 'Agregar Menú' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <app-menu-form 
+          [menuEditar]="menuSeleccionado || null"
+          (menuGuardado)="onMenuGuardado($event)">
+        </app-menu-form>
+      </div>
+    </div>
+  </div>
 </div>

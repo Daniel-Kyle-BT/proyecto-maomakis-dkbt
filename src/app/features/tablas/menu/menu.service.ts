@@ -2,26 +2,7 @@
 import { Injectable, inject, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Categoria {
-  id: number;
-  descripcion: string;
-  estado: boolean;
-}
-
-export interface Menu {
-  id: number;
-  codigo: string;
-  nombre: string;
-  descripcion: string;
-  categoria: Categoria;
-  precio: number;
-  tiempoPreparacion: number;
-  rutaImagen: string;
-  nombreImagen: string;
-  fechaRegistro: string;
-  estado: boolean;
-}
+import { Menu, Categoria } from './menu.model';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -48,4 +29,17 @@ export class MenuService {
   eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.config.apiUrl}/menus/${id}`);
   }
+
+  //Obtener categorías
+  getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${this.config.apiUrl}/categorias`);
+  }
+
+subirImagenMenu(file: File): Observable<string> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post(`${this.config.apiUrl}/upload/menu`, formData, { responseType: 'text' });
+}
+
+
 }

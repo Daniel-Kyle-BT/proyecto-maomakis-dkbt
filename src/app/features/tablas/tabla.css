@@ -8,7 +8,7 @@
 }
 
 /********************************************/
-.modal-backdrop {
+.modalcs-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.5);
@@ -18,7 +18,7 @@
   justify-content: center;
   z-index: 1000;
 }
-.modal {
+.modalcs {
   background: rgba(255, 255, 255, 0.9);
   padding: 10px 0px 10px 20px;
   border-radius: 8px;
@@ -42,7 +42,7 @@ main {
 
 table, th, td {
     border-collapse: collapse;
-    padding: 0.8rem;
+    padding: 0.8rem 1rem;
 }
 
 .cont_tabla {
@@ -77,9 +77,10 @@ table, th, td {
 
 /*************************Titulo*************************/
 .row>h1 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     color: black;
 	margin-bottom: 1vh; 
+    font-weight: bolder;
 }
 
 /***************Botones, Imputs y ComBox*****************/
@@ -152,10 +153,12 @@ table, th, td {
 .buscardor > label,
 .cbo-listar > label {
     font-size: 1rem;
+    height: 2.15rem;;
     white-space: nowrap;
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     margin: 0 3%;
+    line-height: 2.15rem;
     border-radius: 0.5rem;
     background-color: #d5d1defe;
 }
@@ -214,7 +217,7 @@ table, th, td {
 }
 
 .buscardor > input {
-    width: 13rem;
+    width: 10rem;
     padding-left: 8px;
 }
 
@@ -286,6 +289,7 @@ thead  th {
     left: 0;
     background-color: #282839;
     color: white;
+    text-align: center;
 }
 
 tbody tr:nth-child(even) {

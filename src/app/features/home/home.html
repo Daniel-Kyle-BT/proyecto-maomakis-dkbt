@@ -34,15 +34,15 @@
   </div>
 
   <!-- Usuario (icono + nombre + menú desplegable) -->
-  <div class="navbar-right">
-    <div class="user-menu">
-      <i class="bx bxs-user"></i>
-      <span>{{usuario?.nombreEmpleado}} {{ usuario?.apellidoEmpleado }}</span>
-      <div class="user-dropdown">
-        <button (click)="logout()">Cerrar sesión</button>
-      </div>
-    </div>
+<li class="dropdown navbar-right"> <!-- Se mueve la parte de usuario aquí para dropdown -->
+  <a href="javascript:void(0)" class="dropbtn user-menu">
+    <i class="bx bxs-user"></i>
+    <span>{{usuario?.nombreEmpleado}} {{ usuario?.apellidoEmpleado }}</span> ▾
+  </a>
+  <div class="dropdown-content">
+    <button (click)="logout()">Cerrar sesión</button>
   </div>
+</li>
 </nav>
 
 

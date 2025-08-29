@@ -1,7 +1,7 @@
 <!--/tablas/empleado/empleado-page.html-->
 <main>
-  <div class="modal-backdrop" *ngIf="showForm">
-    <div class="modal" style="max-width: 80%;">
+  <div class="modalcs-backdrop" *ngIf="showForm">
+    <div class="modalcs" style="max-width: 80%;">
       <app-empleado-form [empleado]="selectedEmpleado" (save)="onSave($event)" (cancel)="onCancel()">
       </app-empleado-form>
     </div>

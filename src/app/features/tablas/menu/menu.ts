@@ -11,10 +11,12 @@ import { MenuFormComponent } from './menu-form/menu-form';
   templateUrl: './menu.html',
   styleUrls: ['./menu.css']
 })
+
 export class MenuComponent implements OnInit {
+  
   menus: Menu[] = [];
   menuSeleccionado: Menu | null = null;
-
+  
   constructor(private menuService: MenuService,
               private cdr: ChangeDetectorRef) {}
 

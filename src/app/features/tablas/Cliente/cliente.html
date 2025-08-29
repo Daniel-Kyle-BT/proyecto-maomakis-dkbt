@@ -1,7 +1,7 @@
 <main>
   <!-- Modal básico -->
-  <div class="modal-backdrop" *ngIf="showForm">
-    <div class="modal">
+  <div class="modalcs-backdrop" *ngIf="showForm">
+    <div class="modalcs">
       <app-cliente-form [cliente]="selectedCliente" (save)="onSave($event)" (cancel)="onCancel()"></app-cliente-form>
     </div>
   </div>

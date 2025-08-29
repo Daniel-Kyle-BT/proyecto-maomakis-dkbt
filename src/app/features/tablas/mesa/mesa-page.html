@@ -1,7 +1,7 @@
 <!--/tablas/mesa/mesa-page.html-->
 <main>
-  <div class="modal-backdrop" *ngIf="showForm">
-    <div class="modal" style="width: 860px;">
+  <div class="modalcs-backdrop" *ngIf="showForm">
+    <div class="modalcs" style="width: 860px;">
       <app-mesa-form [mesa]="selectedMesa" (save)="onSave($event)" (cancel)="onCancel()"></app-mesa-form>
     </div>
   </div>

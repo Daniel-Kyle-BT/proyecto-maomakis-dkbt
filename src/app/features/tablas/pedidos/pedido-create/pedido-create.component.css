@@ -1,0 +1,76 @@
+/* Contenedor del formulario */
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+}
+
+/* Título */
+.card h5 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #343a40;
+  text-align: center;
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #495057;
+}
+
+/* Inputs y selects */
+input.form-control, select.form-select {
+  border: 1px solid #ced4da;
+  border-radius: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+input.form-control:focus, select.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.25);
+  outline: none;
+}
+
+/* Espaciado entre campos */
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+/* Botón */
+button.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.35rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-1px);
+}
+
+/* Mensajes de alerta */
+.alert {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .card {
+    padding: 1rem;
+    margin: 1rem 0.5rem;
+  }
+}

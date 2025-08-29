@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <h2>Pedidos</h2>
+  <button class="btn btn-primary mb-3" (click)="nuevoPedido()">Nuevo Pedido</button>
+
+  <div *ngIf="cargando">Cargando pedidos...</div>
+
+  <table *ngIf="!cargando" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Empleado</th>
+        <th>Mesa</th>
+        <th>Dirección</th>
+        <th>Fecha Inicio</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pedidos">
+        <td>{{ p.idPedido }}</td>
+        <td>{{ p.tipoPedido.descripcion }}</td>
+        <td>{{ p.empleado.nombre }} {{ p.empleado.apellido }}</td>
+        <td>{{ p.mesa ? p.mesa.numeroMesa : '-' }}</td>
+        <td>{{ p.direccion ? p.direccion.direccionDetallada : '-' }}</td>
+        <td>{{ p.fechaInicio | date:'short' }}</td>
+        <td>{{ p.total | currency:'USD' }}</td>
+        <td>{{ p.estado.descripcion }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="editarPedido(p)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="eliminarPedido(p.idPedido)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para crear/editar pedido -->
+<div *ngIf="mostrarFormulario" class="modal-backdrop">
+  <div class="modal-content">
+    <button class="close-btn" (click)="toggleFormulario()">×</button>
+    <app-pedido-form 
+      [pedidoEditar]="pedidoSeleccionado"
+      (pedidoCreado)="onPedidoCreado($event)">
+    </app-pedido-form>
+  </div>
+</div>

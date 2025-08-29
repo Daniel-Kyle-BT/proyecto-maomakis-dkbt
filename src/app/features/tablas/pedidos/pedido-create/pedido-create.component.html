@@ -1,0 +1,49 @@
+<div class="card p-3 mb-3">
+  <h5>Crear Pedido</h5>
+  <form #pedidoForm="ngForm" (ngSubmit)="guardarPedido()">
+    
+    <div class="mb-2">
+      <label>Tipo de Pedido</label>
+      <select [(ngModel)]="nuevoPedido.tipoPedido" name="tipoPedido" class="form-select" required>
+        <option *ngFor="let t of tiposPedido" [ngValue]="t">{{ t.descripcion }}</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Empleado</label>
+      <select [(ngModel)]="nuevoPedido.empleado" name="empleado" class="form-select" required>
+        <option *ngFor="let e of empleados" [ngValue]="e">{{ e.nombre }} {{ e.apellido }}</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Mesa (opcional)</label>
+      <select [(ngModel)]="nuevoPedido.mesa" name="mesa" class="form-select">
+        <option [ngValue]="null">-- Seleccionar --</option>
+        <option *ngFor="let m of mesas" [ngValue]="m">Mesa {{ m.numeroMesa }}</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Dirección (opcional)</label>
+      <select [(ngModel)]="nuevoPedido.direccion" name="direccion" class="form-select">
+        <option [ngValue]="null">-- Seleccionar --</option>
+        <option *ngFor="let d of direcciones" [ngValue]="d">{{ d.direccionDetallada }}</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Total</label>
+      <input type="number" class="form-control" [(ngModel)]="nuevoPedido.total" name="total" required>
+    </div>
+
+    <div class="mb-2">
+      <label>Estado</label>
+      <select [(ngModel)]="nuevoPedido.estado" name="estado" class="form-select" required>
+        <option *ngFor="let s of estados" [ngValue]="s">{{ s.descripcion }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+  </form>
+</div>

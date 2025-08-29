@@ -80,7 +80,7 @@ export class MesaTableComponent implements OnInit {
   }
 
   toggleEstado(mesa: Mesa): void {
-    const nuevoEstado = mesa.estado.idEstado === 1 ? 2 : 1;
+    const nuevoEstado = mesa.estado.id === 1 ? 2 : 1;
     this.mesaSvc.cambiarEstado(mesa.id, nuevoEstado).subscribe({
       next: () => this.reload$.next(),
       error: (e) => console.error(e)

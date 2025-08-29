@@ -32,7 +32,7 @@ export class MesaFormComponent implements OnInit {
         numeroMesa: this.mesa.numeroMesa,
         capacidad: this.mesa.capacidad,
         idSucursal: this.mesa.sucursal.id,
-        idEstado: this.mesa.estado.idEstado
+        idEstado: this.mesa.estado.id
       });
     }
   }
@@ -53,7 +53,7 @@ export class MesaFormComponent implements OnInit {
       numeroMesa: raw.numeroMesa,
       capacidad: raw.capacidad,
       sucursal: { id: raw.idSucursal } as any,
-      estado: { idEstado: raw.idEstado } as any
+      estado: { id: raw.idEstado } as any
     };
 
     this.save.emit(resultado);

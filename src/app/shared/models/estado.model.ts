@@ -1,5 +1,5 @@
 // shared/models/estado.model.ts
 export interface Estado {
-  idEstado: number;
+  id: number;
   descripcion: string;
 }

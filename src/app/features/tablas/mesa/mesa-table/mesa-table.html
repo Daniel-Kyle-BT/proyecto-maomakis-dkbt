@@ -21,14 +21,14 @@
         <td>{{ mesa.sucursal.distrito.provincia.descripcion }}</td>
         <td>{{ mesa.sucursal.distrito.provincia.departamento.descripcion }}</td>
         <td class="centrado">
-          <span [class.activo]="mesa.estado.idEstado === 1" [class.inactivo]="mesa.estado.idEstado !== 1">
+          <span [class.activo]="mesa.estado.id === 1" [class.inactivo]="mesa.estado.id !== 1">
             {{ mesa.estado.descripcion }}
           </span>
         </td>
         <td class="centrado botones">
           <button class="btn btn-info" (click)="editarMesa.emit(mesa)">Editar</button>
-          <button class="btn" [ngClass]="mesa.estado.idEstado === 1 ? 'btn-danger' : 'btn-primary'" (click)="toggleEstado(mesa)">
-            {{ mesa.estado.idEstado === 1 ? 'Desactivar' : 'Activar' }}
+          <button class="btn" [ngClass]="mesa.estado.id === 1 ? 'btn-danger' : 'btn-primary'" (click)="toggleEstado(mesa)">
+            {{ mesa.estado.id === 1 ? 'Desactivar' : 'Activar' }}
           </button>
         </td>
       </tr>

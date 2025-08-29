@@ -1,0 +1,43 @@
+<ng-container *ngIf="mesas$ | async as mesas; else cargando">
+  <table class="mi-tabla-mesas">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Capacidad</th>
+        <th>Sucursal</th>
+        <th>codigo</th>
+        <th>Provincia</th>
+        <th>Departamento</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mesa of mesas; trackBy: trackById">
+        <td class="centrado">{{ mesa.numeroMesa }}</td>
+        <td class="centrado">{{ mesa.capacidad }}</td>
+        <td>{{ mesa.sucursal.nombre }}</td>
+        <td class="centrado">{{ mesa.sucursal.codigo }}</td>
+        <td>{{ mesa.sucursal.distrito.provincia.descripcion }}</td>
+        <td>{{ mesa.sucursal.distrito.provincia.departamento.descripcion }}</td>
+        <td class="centrado">
+          <span [class.activo]="mesa.estado.idEstado === 1" [class.inactivo]="mesa.estado.idEstado !== 1">
+            {{ mesa.estado.descripcion }}
+          </span>
+        </td>
+        <td class="centrado botones">
+          <button class="btn btn-info" (click)="editarMesa.emit(mesa)">Editar</button>
+          <button class="btn" [ngClass]="mesa.estado.idEstado === 1 ? 'btn-danger' : 'btn-primary'" (click)="toggleEstado(mesa)">
+            {{ mesa.estado.idEstado === 1 ? 'Desactivar' : 'Activar' }}
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!mesas.length">
+        <td colspan="6">No hay mesas para estos filtros.</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #cargando>
+  <div class="loader">Cargando mesas…</div>
+</ng-template>
